@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Include database connection and AdminModel
 require_once "models/AdminModel.php";
 $adminModel = new AdminModel();
 
@@ -12,7 +11,6 @@ if (isset($_SESSION['admin'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['login'])) {
-        // Admin Login
         $username = $_POST['username'];
         $password = $_POST['password'];
 
@@ -24,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $loginError = "Invalid credentials. Please try again.";
         }
     } elseif (isset($_POST['signup'])) {
-        // Admin Sign Up
         $name = $_POST['name'];
         $mobile = $_POST['mobile'];
         $newUsername = $_POST['new_username'];
@@ -56,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real Estate Portal</title>
-    <!-- Bootstrap CSS -->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 
@@ -72,19 +69,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="card-header">
                         <h3 class="text-center">
                             <?php
-                            // Display appropriate heading based on mode
                             echo isset($_POST['signup']) ? 'Admin Sign Up' : 'Admin Login';
                             ?>
                         </h3>
                     </div>
                     <div class="card-body">
                     <form action="index.php" method="post">
-                        <!-- Hidden Fields to Indicate Mode -->
                         <?php if (isset($_GET['signup'])) { ?>
                             <input type="hidden" name="signup_mode" value="1">
                         <?php } ?>
 
-                        <!-- Login Fields -->
                         <?php if (!isset($_GET['signup'])) { ?>
                             <div class="form-group">
                                 <label for="username">Username:</label>
@@ -98,7 +92,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <p class="mt-3 text-center">Don't have an account? <a href="?signup">Sign Up</a></p>
                         <?php } ?>
 
-                        <!-- Signup Fields -->
                         <?php if (isset($_GET['signup'])) { ?>
                             <div class="form-group">
                                 <label for="name">Name:</label>
@@ -139,7 +132,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </footer>
     </div>
 
-    <!-- Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
