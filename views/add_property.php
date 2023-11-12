@@ -1,9 +1,6 @@
-<!-- views/add_property.php -->
-
 <?php
 session_start();
 
-// Check if the admin is not logged in
 if (!isset($_SESSION['admin'])) {
     header("Location: ../index.php");
     exit();
@@ -17,7 +14,7 @@ if (!isset($_SESSION['admin'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Property Panel</title>
-    <!-- Bootstrap CSS -->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 
@@ -31,7 +28,7 @@ if (!isset($_SESSION['admin'])) {
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <form action="process_add_property.php" method="post">
+                        <form action="process/process_add_property.php" method="post">
                             <div class="form-group">
                                 <label for="ownerName">Property Owner Name:</label>
                                 <input type="text" class="form-control" id="ownerName" name="ownerName" required>
@@ -72,7 +69,7 @@ if (!isset($_SESSION['admin'])) {
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block" name="addProperty">Add Property</button>
-                            <a href="admin_panel.php" class="btn btn-danger btn-block mt-3">Go Back to Admin Panel</a>
+                            <a href="admin_panel.php" class="btn btn-danger btn-block mt-3">Cancel</a>
                         </form>
                     </div>
                 </div>
@@ -84,7 +81,6 @@ if (!isset($_SESSION['admin'])) {
         </footer>
     </div>
 
-    <!-- Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

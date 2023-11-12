@@ -22,29 +22,9 @@ if (!$brokerDetails) {
     exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateBroker'])) {
-    $name = $_POST['brokerName'];
-    $contact = $_POST['brokerContact'];
-    $email = $_POST['brokerEmail'];
-    $experience = $_POST['brokerExperience'];
-    $property = $_POST['selectedProperty'];
-    $commission = $_POST['brokerCommission'];
-    $status = $_POST['brokerStatus'];
-
-    $result = $brokerModel->updateBroker($brokerId, $name, $contact, $email, $experience, $property, $commission, $status);
-
-    if ($result) {
-        header("Location: success_page_broker.php");
-        exit();
-    } else {
-        $error = "Error updating broker. Please try again.";
-    }
-}
-
 require_once "../models/PropertyModel.php";
 $propertyModel = new PropertyModel();
 
-// Fetch all properties
 $properties = $propertyModel->getAllProperties();
 ?>
 
@@ -69,7 +49,7 @@ $properties = $propertyModel->getAllProperties();
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <form action="edit_broker.php?broker_id=<?php echo $brokerId; ?>" method="post">
+                        <form action="process/process_edit_broker.php?broker_id=<?php echo $brokerId; ?>" method="post">
                             <div class="form-group">
                                 <label for="brokerName">Broker Name:</label>
                                 <input type="text" class="form-control" id="brokerName" name="brokerName" value="<?php echo $brokerDetails['name']; ?>" required>

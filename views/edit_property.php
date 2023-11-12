@@ -22,27 +22,6 @@ if (!$propertyDetails) {
     header("Location: display_all_properties.php");
     exit();
 }
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateProperty'])) {
-    $ownerName = $_POST['ownerName'];
-    $ownerContact = $_POST['ownerContact'];
-    $address = $_POST['address'];
-    $city = $_POST['city'];
-    $zipCode = $_POST['zipCode'];
-    $kindOfProperty = $_POST['kindOfProperty'];
-    $area = $_POST['area'];
-    $totalValuation = $_POST['totalValuation'];
-    $propertyStatus = $_POST['propertyStatus'];
-
-    $result = $propertyModel->updateProperty($propertyId, $ownerName, $ownerContact, $address, $city, $zipCode, $kindOfProperty, $area, $totalValuation, $propertyStatus);
-
-    if ($result) {
-        header("Location: success_page_property.php");
-        exit();
-    } else {
-        $error = "Error updating property. Please try again.";
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateProperty'])) {
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <form action="edit_property.php?property_id=<?php echo $propertyId; ?>" method="post">
+                        <form action="process/process_edit_property.php?property_id=<?php echo $propertyId; ?>" method="post">
                             <div class="form-group">
                                 <label for="ownerName">Owner Name:</label>
                                 <input type="text" class="form-control" id="ownerName" name="ownerName" value="<?php echo $propertyDetails['owner_name']; ?>" required>

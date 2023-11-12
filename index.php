@@ -1,50 +1,10 @@
 <?php
-session_start();
+require_once "controllers/AdminController.php";
 
-require_once "models/AdminModel.php";
-$adminModel = new AdminModel();
-
-if (isset($_SESSION['admin'])) {
-    header("Location: views/admin_panel.php");
-    exit();
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['login'])) {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        if ($adminModel->authenticateAdmin($username, $password)) {
-            $_SESSION['admin'] = $username;
-            header("Location: views/admin_panel.php");
-            exit();
-        } else {
-            $loginError = "Invalid credentials. Please try again.";
-        }
-    } elseif (isset($_POST['signup'])) {
-        $name = $_POST['name'];
-        $mobile = $_POST['mobile'];
-        $newUsername = $_POST['new_username'];
-        $newPassword = $_POST['new_password'];
-
-        if ($adminModel->addAdmin($name, $mobile, $newUsername, $newPassword)) {
-            $_SESSION['admin'] = $newUsername;
-            header("Location: index.php?action=admin_panel");
-            exit();
-        } else {
-            $signupError = "Error signing up. Please try again.";
-        }
-    }
-
-    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'logout') {
-        session_destroy();
-        unset($_SESSION['admin']);
-        header("Location: index.php");
-        exit();
-    }
-    
-}
+$adminController = new AdminController();
+$adminController->index();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -132,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </footer>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="img.png"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>

@@ -42,6 +42,14 @@ class BrokerModel
         return $result->fetch_assoc();
     }
 
+    public function getAllBrokers()
+    {
+        $query = "SELECT * FROM brokers";
+        $result = $this->db->query($query);
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function updateBroker($brokerId, $name, $contact, $email, $experience, $property, $commission, $status)
     {
         $query = "UPDATE brokers SET

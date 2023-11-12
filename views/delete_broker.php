@@ -22,17 +22,6 @@ if (!$brokerDetails) {
     header("Location: display_all_brokers.php");
     exit();
 }
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteBroker'])) {
-    $result = $brokerModel->deleteBroker($brokerId);
-
-    if ($result) {
-        header("Location: success_page_brokerDeleted.php");
-        exit();
-    } else {
-        $error = "Error deleting broker. Please try again.";
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -56,12 +45,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteBroker'])) {
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <form action="delete_broker.php?broker_id=<?php echo $brokerId; ?>" method="post">
+                        <form action="process/process_delete_broker.php?broker_id=<?php echo $brokerId; ?>" method="post">
                             <p class="text-center">
                                 Are you sure you want to delete the broker '<?php echo $brokerDetails['name']; ?>'?
                             </p>
                             <button type="submit" class="btn btn-danger btn-block" name="deleteBroker">Delete Broker</button>
-                            <a href="display_all_brokers.php" class="btn btn-secondary btn-block mt-3">Cancel</a>
+                            <a href="display_all_broker.php" class="btn btn-secondary btn-block mt-3">Cancel</a>
                         </form>
                         <?php
                         if (isset($error)) {

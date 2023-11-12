@@ -15,10 +15,19 @@ class AdminModel
 
     public function authenticateAdmin($username, $password)
     {
-        $query = "SELECT * FROM admins WHERE username = '$username' AND password = '$password'";
+        $query = "SELECT * FROM admins WHERE username = '$username'";
         $result = $this->db->query($query);
 
-        return $result->num_rows > 0;
+        if ($result->num_rows > 0) {
+            $admin = $result->fetch_assoc();
+            $hashedPassword = $admin['password'];
+
+            if (password_verify($password, $hashedPassword)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function addAdmin($name, $mobile, $username, $password)
@@ -26,21 +35,5 @@ class AdminModel
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $query = "INSERT INTO admins (name, mobile, username, password) VALUES ('$name', '$mobile', '$username', '$hashedPassword')";
         return $this->db->query($query);
-    }
-
-    public function getAllBrokers()
-    {
-        $query = "SELECT * FROM brokers";
-        $result = $this->db->query($query);
-
-        return $result->fetch_all(MYSQLI_ASSOC);
-    }
-
-    public function getAllProperties()
-    {
-        $query = "SELECT * FROM properties";
-        $result = $this->db->query($query);
-
-        return $result->fetch_all(MYSQLI_ASSOC);
     }
 }

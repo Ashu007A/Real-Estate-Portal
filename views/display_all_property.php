@@ -1,20 +1,15 @@
-<!-- views/display_all_properties.php -->
-
 <?php
 session_start();
 
-// Check if the admin is not logged in
 if (!isset($_SESSION['admin'])) {
     header("Location: ../index.php");
     exit();
 }
 
-// Include AdminModel
-require_once "../models/AdminModel.php";
-$adminModel = new AdminModel();
+require_once "../models/PropertyModel.php";
+$propertyModel = new PropertyModel();
 
-// Fetch all properties
-$properties = $adminModel->getAllProperties();
+$properties = $propertyModel->getAllProperties();
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +19,7 @@ $properties = $adminModel->getAllProperties();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Display All Properties</title>
-    <!-- Bootstrap CSS -->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 
@@ -74,7 +69,7 @@ $properties = $adminModel->getAllProperties();
                     </tbody>
                 </table>
             </div>
-            <a href="admin_panel.php" class="btn btn-danger btn-block mt-3">Go Back to Admin Panel</a>
+            <a href="admin_panel.php" class="btn btn-danger btn-block mt-3" style="width:44%">Go Back to Admin Panel</a>
         </div>
 
         <footer class="text-center mt-5">
@@ -82,7 +77,6 @@ $properties = $adminModel->getAllProperties();
         </footer>
     </div>
 
-    <!-- Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

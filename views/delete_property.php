@@ -22,17 +22,6 @@ if (!$propertyDetails) {
     header("Location: display_all_properties.php");
     exit();
 }
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteProperty'])) {
-    $result = $propertyModel->deleteProperty($propertyId);
-
-    if ($result) {
-        header("Location: success_page_propertyDeleted.php");
-        exit();
-    } else {
-        $error = "Error deleting property. Please try again.";
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -56,12 +45,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteProperty'])) {
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <form action="delete_property.php?property_id=<?php echo $propertyId; ?>" method="post">
+                        <form action="process/process_delete_property.php?property_id=<?php echo $propertyId; ?>" method="post">
                             <p class="text-center">
                                 Are you sure you want to delete the property '<?php echo $propertyDetails['address']; ?>'?
                             </p>
                             <button type="submit" class="btn btn-danger btn-block" name="deleteProperty">Delete Property</button>
-                            <a href="display_all_properties.php" class="btn btn-secondary btn-block mt-3">Cancel</a>
+                            <a href="display_all_property.php" class="btn btn-secondary btn-block mt-3">Cancel</a>
                         </form>
                         <?php
                         if (isset($error)) {

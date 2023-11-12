@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 require_once 'models/BrokerModel.php';
 
 class BrokerController
@@ -48,4 +48,4 @@ class BrokerController
         exit();
     }
 }
-?>
+?> -->

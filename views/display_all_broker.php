@@ -6,11 +6,10 @@ if (!isset($_SESSION['admin'])) {
     exit();
 }
 
-require_once "../models/AdminModel.php";
-$adminModel = new AdminModel();
+require_once "../models/BrokerModel.php";
+$brokerModel = new BrokerModel();
 
-// Fetch all brokers
-$brokers = $adminModel->getAllBrokers();
+$brokers = $brokerModel->getAllBrokers();
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +67,7 @@ $brokers = $adminModel->getAllBrokers();
                     </tbody>
                 </table>
             </div>
-            <a href="admin_panel.php" class="btn btn-danger btn-block mt-3">Go Back to Admin Panel</a>
+            <a href="admin_panel.php" class="btn btn-danger btn-block mt-3" style="width:44%">Go Back to Admin Panel</a>
         </div>
 
         <footer class="text-center mt-5">
