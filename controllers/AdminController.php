@@ -59,8 +59,8 @@ class AdminController
         $newPassword = $_POST['new_password'];
 
         if ($this->adminModel->addAdmin($name, $mobile, $newUsername, $newPassword)) {
-            $_SESSION['admin'] = $newUsername;
-            header("Location: index.php?action=admin_panel");
+            // $_SESSION['admin'] = $newUsername;
+            header("Location: views/success_page_signup.php");
             exit();
         } else {
             $signupError = "Error signing up. Please try again.";
@@ -68,14 +68,14 @@ class AdminController
     }
 
     public function logout()
-{
-    if (session_id() == '') {
-        session_start();
-    }
+    {
+        if (session_id() == '') {
+            session_start();
+        }
 
-    session_destroy();
-    unset($_SESSION['admin']);
-    header("Location: index.php");
-    exit();
-}
+        session_destroy();
+        unset($_SESSION['admin']);
+        header("Location: index.php");
+        exit();
+    }
 }

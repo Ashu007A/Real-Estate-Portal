@@ -20,8 +20,8 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <p class="text-success">Property deleted successfully!</p>
-                        <a href="display_all_property.php" class="btn btn-primary btn-block mt-3">Go Back to Property Panel</a>
+                        <p class="text-success">Account created successfully!</p>
+                        <a href="admin_panel.php" class="btn btn-primary btn-block mt-3">Please Log In</a>
                     </div>
                 </div>
             </div>

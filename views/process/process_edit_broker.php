@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateBroker'])) {
     $contact = $_POST['brokerContact'];
     $email = $_POST['brokerEmail'];
     $experience = $_POST['brokerExperience'];
-    $property = $_POST['selectedProperty'];
+    $property = $_POST['selectProperty'];
     $commission = $_POST['brokerCommission'];
     $status = $_POST['brokerStatus'];
 
